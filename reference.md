@@ -79,16 +79,16 @@ isAlive) обновляются только в конце игрового ци
 
 ### Поля:
 
-| Название  | Тип                                 | Предназначение                                                                                            |
-|-----------|-------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| id        | number <sup>(readonly)</sup>        | Уникальный Object ID этого объекта.                                                                       |
-| data      | [Data](#data) <sup>(readonly)</sup> | …                                                                                                         |
-| x         | number <sup>(readonly)</sup>        | …                                                                                                         |
-| y         | number <sup>(readonly)</sup>        | …                                                                                                         |
-| z         | number <sup>(readonly)</sup>        | …                                                                                                         |
-| index     | number <sup>(readonly)</sup>        | Индекс игрока, которому принадлежит объект. Равен <b>-1</b>, если объект никому не принадлежит.           |
-| team      | number <sup>(readonly)</sup>        | Номер команды, которой принадлежит объект. Равен <b>-1</b>, если объект нейтрален или враждебен для всех. |
-| dimension | number <sup>(readonly)</sup>        | Измерение. Равен <b>1</b>, если объект находится в измерении Корделиуса, и <b>0</b> в остальных случаях.  |
+| Название  | Тип                                                     | Предназначение                                                                                            |
+|-----------|---------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| id        | number <sup>(readonly)</sup>                            | Уникальный Object ID этого объекта.                                                                       |
+| data      | [GameObjectData](#gameobjectdata) <sup>(readonly)</sup> | …                                                                                                         |
+| x         | number <sup>(readonly)</sup>                            | …                                                                                                         |
+| y         | number <sup>(readonly)</sup>                            | …                                                                                                         |
+| z         | number <sup>(readonly)</sup>                            | …                                                                                                         |
+| index     | number <sup>(readonly)</sup>                            | Индекс игрока, которому принадлежит объект. Равен <b>-1</b>, если объект никому не принадлежит.           |
+| team      | number <sup>(readonly)</sup>                            | Номер команды, которой принадлежит объект. Равен <b>-1</b>, если объект нейтрален или враждебен для всех. |
+| dimension | number <sup>(readonly)</sup>                            | Измерение. Равен <b>1</b>, если объект находится в измерении Корделиуса, и <b>0</b> в остальных случаях.  |
 
 ### Методы:
 
@@ -109,24 +109,25 @@ isAlive) обновляются только в конце игрового ци
 
 ### Поля:
 
-| Название               | Тип                                                     | Предназначение                                                                                                                                                                                   |
-|------------------------|---------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| angleLegs              | number <sup>(readonly)</sup>                            | Угол направления ног персонажа. По этому значению можно определить направление его движения.                                                                                                     |
-| angleHead              | number <sup>(readonly)</sup>                            | Угол направления головы персонажа.                                                                                                                                                               |
-| hitPoints              | number <sup>(readonly)</sup>                            | Текущее количество здоровья.                                                                                                                                                                     |
-| maxHitPoints           | number <sup>(readonly)</sup>                            | Максимальное количество здоровья.                                                                                                                                                                |
-| type                   | [CharacterType](#charactertype) <sup>(readonly)</sup>   | Тип персонажа.                                                                                                                                                                                   |
-| isBot                  | boolean <sup>(readonly)</sup>                           | Управляется ли персонаж ботом?                                                                                                                                                                   |
-| isStunned              | boolean <sup>(readonly)</sup>                           | Есть ли стан у персонажа?                                                                                                                                                                        |
-| persistentSpeedBuff    | number                                                  | …                                                                                                                                                                                                |
-| persistentReloadBuff   | number                                                  | …                                                                                                                                                                                                |
-| heroUpgradeLevel       | number                                                  | Уровень улучшения персонажа. Считается с нуля. Не все игровые механики используют это поле, поэтому вам также может понадобиться вызвать <i>setUpgradeLevel()</i> у конкретного [Skill](#skill). |
-| linkedCharacter        | [LogicCharacter](#logiccharacter) <sup>(readonly)</sup> | Мяч (carryable), который держит персонаж. Если персонаж ничего не держит, то будет равен <b>nil</b>.                                                                                             |
-| consShieldValue        | number <sup>(readonly)</sup>                            | Оставшееся здоровье consumable-щита.                                                                                                                                                             |
-| takingDamageListeners  | List <sup>(readonly)</sup>                              | Список подписок на событие получения урона. Использует класс DamageEventListener.                                                                                                                |
-| dealingDamageListeners | List <sup>(readonly)</sup>                              | Список подписок на событие нанесения урона. Использует класс DamageEventListener.                                                                                                                |
-| deathListeners         | List <sup>(readonly)</sup>                              | Список подписок на событие смерти (когда здоровье опускается до нуля). Использует класс BasicEventListener.                                                                                      |
-| skillUseListeners      | List <sup>(readonly)</sup>                              | Список подписок на событие использования атаки или супера. Использует класс SkillEventListener.                                                                                                  |
+| Название                 | Тип                                                     | Предназначение                                                                                                                                                                                   |
+|--------------------------|---------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| angleLegs                | number <sup>(readonly)</sup>                            | Угол направления ног персонажа. По этому значению можно определить направление его движения.                                                                                                     |
+| angleHead                | number <sup>(readonly)</sup>                            | Угол направления головы персонажа.                                                                                                                                                               |
+| hitPoints                | number <sup>(readonly)</sup>                            | Текущее количество здоровья.                                                                                                                                                                     |
+| maxHitPoints             | number <sup>(readonly)</sup>                            | Максимальное количество здоровья.                                                                                                                                                                |
+| type                     | [CharacterType](#charactertype) <sup>(readonly)</sup>   | Тип персонажа.                                                                                                                                                                                   |
+| isBot                    | boolean <sup>(readonly)</sup>                           | Управляется ли персонаж ботом?                                                                                                                                                                   |
+| isStunned                | boolean <sup>(readonly)</sup>                           | Есть ли стан у персонажа?                                                                                                                                                                        |
+| persistentSpeedBuff      | number                                                  | …                                                                                                                                                                                                |
+| persistentReloadBuff     | number                                                  | …                                                                                                                                                                                                |
+| heroUpgradeLevel         | number                                                  | Уровень улучшения персонажа. Считается с нуля. Не все игровые механики используют это поле, поэтому вам также может понадобиться вызвать <i>setUpgradeLevel()</i> у конкретного [Skill](#skill). |
+| linkedCharacter          | [LogicCharacter](#logiccharacter) <sup>(readonly)</sup> | Мяч (carryable), который держит персонаж. Если персонаж ничего не держит, то будет равен <b>nil</b>.                                                                                             |
+| consShieldValue          | number <sup>(readonly)</sup>                            | Оставшееся здоровье consumable-щита.                                                                                                                                                             |
+| takingDamageListeners    | List <sup>(readonly)</sup>                              | Список подписок на событие получения урона. Использует класс DamageEventListener.                                                                                                                |
+| dealingDamageListeners   | List <sup>(readonly)</sup>                              | Список подписок на событие нанесения урона. Использует класс DamageEventListener.                                                                                                                |
+| deathListeners           | List <sup>(readonly)</sup>                              | Список подписок на событие смерти (когда здоровье опускается до нуля). Использует класс SourceListener.                                                                                          |
+| skillUseListeners        | List <sup>(readonly)</sup>                              | Список подписок на событие использования атаки или супера. Использует класс SkillEventListener.                                                                                                  |
+| startOverchargeListeners | List <sup>(readonly)</sup>                              | Список подписок на событие использования гиперзаряда. Использует класс BasicListener.                                                                                                            |
 
 ### Методы:
 
@@ -326,6 +327,36 @@ isAlive) обновляются только в конце игрового ци
 | getGlobalId | () ⇒ number | Возвращает свой уникальный ID. Фактически считается так: <code>(this.getType() * 1000000) + this.getIndex()</code> |
 | getName     | () ⇒ string | …                                                                                                                  |
 
+# GameObjectData
+
+Наследуется от [Data](#data).
+
+Абстрактный класс.
+
+# ProjectileData
+
+Наследуется от [GameObjectData](#gameobjectdata).
+
+Хранит табличные данные для каждого снаряда из <i>projectiles_skin.csv</i> и <i>projectiles_logic.csv</i>.
+
+# CharacterData
+
+Наследуется от [GameObjectData](#gameobjectdata).
+
+Хранит табличные данные для каждого персонажа из <i>characters.csv</i>.
+
+# ItemData
+
+Наследуется от [GameObjectData](#gameobjectdata).
+
+Хранит табличные данные для каждого предмета из <i>items.csv</i>.
+
+# AreaEffectData
+
+Наследуется от [GameObjectData](#gameobjectdata).
+
+Хранит табличные данные для каждого скилла из <i>area_effects_skin.csv</i> и <i>area_effects_logic.csv</i>.
+
 # TileData
 
 Наследуется от [Data](#data).
@@ -337,30 +368,6 @@ isAlive) обновляются только в конце игрового ци
 Наследуется от [Data](#data).
 
 Хранит табличные данные для каждого скилла из <i>skills.csv</i>.
-
-# CharacterData
-
-Наследуется от [Data](#data).
-
-Хранит табличные данные для каждого персонажа из <i>characters.csv</i>.
-
-# ItemData
-
-Наследуется от [Data](#data).
-
-Хранит табличные данные для каждого предмета из <i>items.csv</i>.
-
-# ProjectileData
-
-Наследуется от [Data](#data).
-
-Хранит табличные данные для каждого снаряда из <i>projectiles_skin.csv</i> и <i>projectiles_logic.csv</i>.
-
-# AreaEffectData
-
-Наследуется от [Data](#data).
-
-Хранит табличные данные для каждого скилла из <i>area_effects_skin.csv</i> и <i>area_effects_logic.csv</i>.
 
 # LocationData
 

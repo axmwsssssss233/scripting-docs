@@ -7,13 +7,15 @@ function tick()
         if marked[character.id] == nil and character.data:getName() == "LootBox" then
             marked[character.id] = true
 
-            local callback = function()
-                local data = lookup(17, "HeistBombExplosion")
-                character:spawnCirclingAreaEffect(0, data, AttackOrigin.UNKNOWN, false, false)
-                log("Boom!")
+            local callback = function(origin)
+                if origin ~= AttackOrigin.NEW_ROUND then
+                    local data = lookup(17, "HeistBombExplosion")
+                    character:spawnCirclingAreaEffect(0, data, AttackOrigin.UNKNOWN, false, false)
+                    log("Boom!")
+                end
             end
 
-            local callbackImpl = createCallback("BasicEventListener", callback)
+            local callbackImpl = createCallback("SourceListener", callback)
             character.deathListeners:add(callbackImpl)
         end
     end

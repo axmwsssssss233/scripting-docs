@@ -90,7 +90,6 @@ end
 | lookup         | (type: number, name: string) ⇒ Data     | Позволяет получить объект Data по его типу и названию.                                   |
 | createObject   | (data: Data) ⇒ LogicGameObject          | Позволяет создать новый экземпляр LogicGameObject для конкретного Data.                  |
 | createCallback | (class: string, arg: function) ⇒ Object | Позволяет преобразовать Lua-функцию в Java-объект. Используется для подписки на события. |
-| enumAsTable    | (class: string) ⇒ table                 | **Deprecated.** Оставлен только для обратной совместимости.                              |                                                                                      |
 | log            | (params: string...) ⇒ void              | Печатает сообщение в отладочные журналы и в чат дружеской комнаты, если применимо.       |
 
 Эти функции доступны глобально.
@@ -158,7 +157,8 @@ character.takingDamageListeners:add(callbackImpl)
 |---------------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | DamageEventListener | (source: LogicCharacter,<br/>projectile: LogicProjectile, <br/>damage: number,<br/> data: Data,<br/> origin: AttackOrigin) ⇒ void |
 | SkillEventListener  | (skill: Skill) ⇒ void                                                                                                             |
-| BasicEventListener  | () ⇒ void                                                                                                                         |
+| SourceListener      | (origin: AttackOrigin) ⇒ void                                                                                                     |
+| BasicListener       | () ⇒ void                                                                                                                         |
 
 ## Безопасность
 
