@@ -189,7 +189,8 @@ character.takingDamageListeners:add(callbackImpl)
 | 23  | cards.csv                                         |                                                   |
 | 27  | tiles.csv                                         | [TileData](reference.md#tiledata)                 |
 | 29  | skins.csv                                         | [SkinData](reference.md#skindata)                 |
+| 50  | accessories.csv                                   | [AccessoryData](reference.md#accessorydata)       |
 | 52  | emotes.csv                                        |                                                   |
 | 68  | sprays.csv                                        |                                                   |
-| 108 | traits.csv                                        |                                                   |
+| 108 | traits.csv                                        | [TraitData](reference.md#traitdata)               |
 | 117 | status_effects_skin.csv, status_effects_logic.csv | [StatusEffectData](reference.md#statuseffectdata) |

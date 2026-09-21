@@ -18,11 +18,12 @@
 
 ### Методы:
 
-| Название        | Тип                                         | Предназначение                                                                                                              |
-|-----------------|---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| getClientInfo   | (index: number) ⇒ [ClientInfo](#clientinfo) | Позволяет получить объект ClientInfo по индексу игрока.                                                                     |
-| isIntroFinished | () ⇒ boolean                                | Позволяет проверить, завершилась ли интро-анимация боя.                                                                     |
-| getRandomInt    | (N: number, M: number) ⇒ number             | Позволяет получить случайное целое число от N до M: [N; M). Использует тот же генератор случайных чисел, что и логика игры. |
+| Название          | Тип                                         | Предназначение                                                                                                              |
+|-------------------|---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| getClientInfo     | (index: number) ⇒ [ClientInfo](#clientinfo) | Позволяет получить объект ClientInfo по индексу игрока.                                                                     |
+| isIntroFinished   | () ⇒ boolean                                | Позволяет проверить, завершилась ли интро-анимация боя.                                                                     |
+| getRandomInt      | (N: number, M: number) ⇒ number             | Позволяет получить случайное целое число от N до M: [N; M). Использует тот же генератор случайных чисел, что и логика игры. |
+| debugFinishBattle | (team: number) ⇒ void                       | Принудительно завершает бой, задавая команду-победителя.                                                                    |
 
 # GameObjectManager
 
@@ -46,25 +47,26 @@ isAlive) обновляются только в конце игрового ци
 
 ### Поля:
 
-| Название            | Тип                           | Предназначение                                                                                                    |
-|---------------------|-------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| index               | number <sup>(readonly)</sup>  | Индекс этого игрока.                                                                                              |
-| team                | number <sup>(readonly)</sup>  | Номер команды игрока. Два игрока одной команды будут иметь одинаковое значение.                                   |
-| objectId            | number <sup>(readonly)</sup>  | Object ID текущего LogicCharacter, за которого играет игрок.                                                      |
-| x                   | number <sup>(readonly)</sup>  | …                                                                                                                 |
-| y                   | number <sup>(readonly)</sup>  | Позиция камеры игрока. В большинстве случаев будет совпадать с позицией LogicCharacter, за которого играет игрок. |
-| gamePoints          | number <sup>(readonly)</sup>  | Количество игровых очков. Предназначение зависит от режима.                                                       |
-| isAlive             | boolean <sup>(readonly)</sup> | Равен <b>true</b>, если персонаж игрока жив и присутствует на карте.                                              |
-| isBot               | boolean <sup>(readonly)</sup> | Показывает, является ли игрок ботом.                                                                              |
-| ultiCharge          | number                        | …                                                                                                                 |
-| maxUltiCharge       | number <sup>(readonly)</sup>  | …                                                                                                                 |
-| overchargeCharge    | number                        | …                                                                                                                 |
-| maxOverchargeCharge | number <sup>(readonly)</sup>  | …                                                                                                                 |
-| ultiUsesLeft        | number <sup>(readonly)</sup>  | …                                                                                                                 |
-| isRespawning        | boolean <sup>(readonly)</sup> | Равен <b>true</b>, если игрок возрождается и вот-вот заспавнится.                                                 |
-| emoteUsedIndex      | number <sup>(readonly)</sup>  | …                                                                                                                 |
-| emoteUsedTick       | number <sup>(readonly)</sup>  | …                                                                                                                 |
-| isOverchargeActive  | boolean <sup>(readonly)</sup> | …                                                                                                                 |
+| Название            | Тип                                           | Предназначение                                                                                                    |
+|---------------------|-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| index               | number <sup>(readonly)</sup>                  | Индекс этого игрока.                                                                                              |
+| team                | number <sup>(readonly)</sup>                  | Номер команды игрока. Два игрока одной команды будут иметь одинаковое значение.                                   |
+| objectId            | number <sup>(readonly)</sup>                  | Object ID текущего LogicCharacter, за которого играет игрок.                                                      |
+| x                   | number <sup>(readonly)</sup>                  | …                                                                                                                 |
+| y                   | number <sup>(readonly)</sup>                  | Позиция камеры игрока. В большинстве случаев будет совпадать с позицией LogicCharacter, за которого играет игрок. |
+| gamePoints          | number <sup>(readonly)</sup>                  | Количество игровых очков. Предназначение зависит от режима.                                                       |
+| isAlive             | boolean <sup>(readonly)</sup>                 | Равен <b>true</b>, если персонаж игрока жив и присутствует на карте.                                              |
+| isBot               | boolean <sup>(readonly)</sup>                 | Показывает, является ли игрок ботом.                                                                              |
+| ultiCharge          | number                                        | …                                                                                                                 |
+| maxUltiCharge       | number <sup>(readonly)</sup>                  | …                                                                                                                 |
+| overchargeCharge    | number                                        | …                                                                                                                 |
+| maxOverchargeCharge | number <sup>(readonly)</sup>                  | …                                                                                                                 |
+| ultiUsesLeft        | number <sup>(readonly)</sup>                  | …                                                                                                                 |
+| isRespawning        | boolean <sup>(readonly)</sup>                 | Равен <b>true</b>, если игрок возрождается и вот-вот заспавнится.                                                 |
+| emoteUsedIndex      | number <sup>(readonly)</sup>                  | …                                                                                                                 |
+| emoteUsedTick       | number <sup>(readonly)</sup>                  | …                                                                                                                 |
+| isOverchargeActive  | boolean <sup>(readonly)</sup>                 | …                                                                                                                 |
+| accessory           | [Accessory](#accessory) <sup>(readonly)</sup> | …                                                                                                                 |
 
 ### Методы:
 
@@ -89,6 +91,7 @@ isAlive) обновляются только в конце игрового ци
 | index     | number <sup>(readonly)</sup>                            | Индекс игрока, которому принадлежит объект. Равен <b>-1</b>, если объект никому не принадлежит.           |
 | team      | number <sup>(readonly)</sup>                            | Номер команды, которой принадлежит объект. Равен <b>-1</b>, если объект нейтрален или враждебен для всех. |
 | dimension | number <sup>(readonly)</sup>                            | Измерение. Равен <b>1</b>, если объект находится в измерении Корделиуса, и <b>0</b> в остальных случаях.  |
+| traits    | [Traits](#traits) <sup>(readonly)</sup>                 | …                                                                                                         |
 
 ### Методы:
 
@@ -100,6 +103,18 @@ isAlive) обновляются только в конце игрового ци
 | getSkinData        | () ⇒ [SkinData](#skindata)               | …                                                                                                                                            |
 | isOverchargeActive | () ⇒ boolean                             | …                                                                                                                                            |
 | setIndex           | (index: number, team: number) ⇒ void     | Позволяет задать игрока-владельца объекта. Рекомендуется вызывать только перед добавлением объекта в GameObjectManager.                      |
+
+# Traits
+
+Менеджер особых способностей (traits) конкретного игрового объекта. Новые объекты наследуют способности от родительских объектов.
+
+### Методы:
+
+| Название     | Тип                                                       | Предназначение                                                                                                             |
+|--------------|-----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| add          | (data: [TraitData](#traitdata)) ⇒ void                    | Добавляет конкретную способность.                                                                                          |
+| remove       | (data: [TraitData](#traitdata)) ⇒ boolean                 | Удаляет конкретную способность.                                                                                            |
+| getComponent | (type: [TraitType](#traittype)) ⇒ [TraitData](#traitdata) | Позволяет получить конкретную способность по её типу. Возвращает <b>nil</b>, если способности с таким типом у объекта нет. |
 
 # LogicCharacter
 
@@ -153,6 +168,7 @@ isAlive) обновляются только в конце игрового ци
 | setConsumableShield                         | (value: number, ticks: number) ⇒ void                                                                                                                                                                                                                                                                                                                                                                              | Выдает consumable-щит. Позволяет указать его количество здоровья (value) и длительность (ticks).                                                                                                                                                                                                                                                                                                                                                           |
 | gainShield <sup>[[1]](#01def85e)</sup>      | (ticks: number, value: number) ⇒ void                                                                                                                                                                                                                                                                                                                                                                              | Выдает классический щит. Позволяет указать процент защиты (value) и длительность (ticks).                                                                                                                                                                                                                                                                                                                                                                  |
 | setStun <sup>[[1]](#01def85e)</sup>         | (ticks: number, skipImmunity: boolean, isSleepy: boolean, isCrossing: boolean) ⇒ boolean                                                                                                                                                                                                                                                                                                                           | Накладывает классический эффект стана. Позволяет указать длительность (ticks) и подтип (isSleepy, isCrossing).                                                                                                                                                                                                                                                                                                                                             |
+| push                                        | (pushX: number, pushY: number, strength: number, canFly: boolean, a7: boolean, a8: boolean, a9: boolean, skipCCImmunity: boolean, a11: boolean, a12: boolean, a13: boolean, useFixedDistance: boolean, stunTicks: number, speedModifier: number) ⇒ void                                                                                                                                                            | Отталкивает персонажа от указанной точки. Сила (strength) определяет расстояние отталкивания.                                                                                                                                                                                                                                                                                                                                                              |
 
 <span id="01def85e"><sup>[1]</sup> По возможности рекомендуется использовать статус-эффекты вместо этого метода.</span>
 
@@ -184,11 +200,13 @@ isAlive) обновляются только в конце игрового ци
 
 ### Поля:
 
-| Название   | Тип                                                         | Предназначение                                                                                  |
-|------------|-------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
-| data       | [StatusEffectData](#statuseffectdata) <sup>(readonly)</sup> | …                                                                                               |
-| ticksTotal | number <sup>(readonly)</sup>                                | Общее количество тиков, в течение которых действует этот статус-эффект.                         |
-| ticksLeft  | number <sup>(readonly)</sup>                                | Оставшееся количество тиков, в течение которых действует этот статус-эффект. Монотонно убывает. |
+| Название    | Тип                                                         | Предназначение                                                                                  |
+|-------------|-------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| data        | [StatusEffectData](#statuseffectdata) <sup>(readonly)</sup> | …                                                                                               |
+| ticksTotal  | number <sup>(readonly)</sup>                                | Общее количество тиков, в течение которых действует этот статус-эффект.                         |
+| ticksLeft   | number <sup>(readonly)</sup>                                | Оставшееся количество тиков, в течение которых действует этот статус-эффект. Монотонно убывает. |
+| damageBase  | number                                                      | Базовое значение периодического урона без учета баффов и уровня.                                |
+| healingBase | number                                                      | Базовое значение периодического исцеления без учета баффов и уровня.                            |
 
 ### Методы:
 
@@ -224,15 +242,21 @@ isAlive) обновляются только в конце игрового ци
 
 ### Поля:
 
-| Название | Тип                                                 | Предназначение |
-|----------|-----------------------------------------------------|----------------|
-| origin   | [AttackOrigin](#attackorigin) <sup>(readonly)</sup> | …              |
+| Название       | Тип                                                     | Предназначение                                                                   |
+|----------------|---------------------------------------------------------|----------------------------------------------------------------------------------|
+| ownerCharacter | [LogicCharacter](#logiccharacter) <sup>(readonly)</sup> | …                                                                                |
+| origin         | [AttackOrigin](#attackorigin) <sup>(readonly)</sup>     | …                                                                                |
+| damage         | number                                                  | Урон, который будет наносить этот эффект персонажам в зоне действия.             |
+| ultiEnergy     | number                                                  | Количество супера, которое будет заряжаться у игрока при каждом нанесения урона. |
 
 ### Методы:
 
-| Название | Тип       | Предназначение                     |
-|----------|-----------|------------------------------------|
-| destroy  | () ⇒ void | Уничтожает этот эффект немедленно. |
+| Название       | Тип                                                                                                                            | Предназначение                                                                                                           |
+|----------------|--------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| setSource      | (index: number, team: number, ownerCharacter: [LogicCharacter](#logiccharacter), origin: [AttackOrigin](#attackorigin)) ⇒ void | …                                                                                                                        |
+| isObjectInside | (object: [LogicGameObject](#logicgameobject)) ⇒ boolean                                                                        | Проверяет, находится ли игровой объект внутри зоны действия эффекта.                                                     |
+| destroy        | () ⇒ void                                                                                                                      | Уничтожает этот эффект немедленно.                                                                                       |
+| trigger        | () ⇒ void                                                                                                                      | Начинает действие этого эффекта. Необходимо вызвать один раз после добавления в [GameObjectManager](#gameobjectmanager). |
 
 # LogicItem
 
@@ -246,14 +270,27 @@ isAlive) обновляются только в конце игрового ци
 |--------------------|---------------------------------------------------------|------------------------------------------------------------------------------------|
 | isTriggered        | boolean <sup>(readonly)</sup>                           | …                                                                                  |
 | triggeredCharacter | [LogicCharacter](#logiccharacter) <sup>(readonly)</sup> | …                                                                                  |
+| ownerCharacter     | [LogicCharacter](#logiccharacter) <sup>(readonly)</sup> | …                                                                                  |
 | origin             | [AttackOrigin](#attackorigin) <sup>(readonly)</sup>     | …                                                                                  |
 | sprayDataIndex     | number                                                  | Если предмет является спреем (Spray), тогда указывает на индекс конкретного спрея. |
 
 ### Методы:
 
-| Название | Тип       | Предназначение                      |
-|----------|-----------|-------------------------------------|
-| destroy  | () ⇒ void | Уничтожает этот предмет немедленно. |
+| Название  | Тип                                                                                                                            | Предназначение                      |
+|-----------|--------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
+| setSource | (index: number, team: number, ownerCharacter: [LogicCharacter](#logiccharacter), origin: [AttackOrigin](#attackorigin)) ⇒ void | …                                   |
+| destroy   | () ⇒ void                                                                                                                      | Уничтожает этот предмет немедленно. |
+
+# Accessory
+
+…
+
+### Поля:
+
+| Название | Тип                                                   | Предназначение |
+|----------|-------------------------------------------------------|----------------|
+| data     | [AccessoryData](#accessorydata) <sup>(readonly)</sup> | …              |
+| isActive | boolean <sup>(readonly)</sup>                         | …              |
 
 # TileMap
 
@@ -302,6 +339,12 @@ isAlive) обновляются только в конце игрового ци
 …
 
 # CharacterType
+
+Является перечислением.
+
+…
+
+# TraitType
 
 Является перечислением.
 
@@ -386,6 +429,18 @@ isAlive) обновляются только в конце игрового ци
 Наследуется от [Data](#data).
 
 Хранит табличные данные для каждого эффекта из <i>status_effects_skin.csv</i> и <i>status_effects_logic.csv</i>.
+
+# AccessoryData
+
+Наследуется от [Data](#data).
+
+Хранит табличные данные для каждого гаджета из <i>accessories.csv</i>.
+
+# TraitData
+
+Наследуется от [Data](#data).
+
+Хранит табличные данные для каждой способности из <i>traits.csv</i>.
 
 # ArrayList
 
