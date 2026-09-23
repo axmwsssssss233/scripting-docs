@@ -13,8 +13,8 @@
 | isBattleEnded     | boolean <sup>(readonly)</sup>                                 | Завершен ли бой?                                                                              |
 | hasPoisonDisabled | boolean                                                       | Выключен ли яд игрового режима?                                                               |
 | hasIntroSkip      | boolean                                                       | Пропустить ли интро-анимацию?                                                                 |
-| objectManager     | [GameObjectManager](#gameobjectmanager) <sup>(readonly)</sup> | …                                                                                             |
-| map               | [TileMap](#tilemap) <sup>(readonly)</sup>                     | …                                                                                             |
+| objectManager     | [GameObjectManager](#gameobjectmanager) <sup>(readonly)</sup> | Менеджер обьектов, может работать с обьектами.                                                                                            |
+| map               | [TileMap](#tilemap) <sup>(readonly)</sup>                     | ...                                                                                             |
 
 ### Методы:
 
@@ -57,16 +57,16 @@ isAlive) обновляются только в конце игрового ци
 | gamePoints          | number                                        | Количество игровых очков. Предназначение зависит от режима.                                                       |
 | isAlive             | boolean <sup>(readonly)</sup>                 | Равен <b>true</b>, если персонаж игрока жив и присутствует на карте.                                              |
 | isBot               | boolean <sup>(readonly)</sup>                 | Показывает, является ли игрок ботом.                                                                              |
-| ultiCharge          | number                                        | …                                                                                                                 |
-| maxUltiCharge       | number <sup>(readonly)</sup>                  | …                                                                                                                 |
-| overchargeCharge    | number                                        | …                                                                                                                 |
-| maxOverchargeCharge | number <sup>(readonly)</sup>                  | …                                                                                                                 |
-| ultiUsesLeft        | number <sup>(readonly)</sup>                  | …                                                                                                                 |
+| ultiCharge          | number                                        | Текущий процент зарядки супера.                                                                                                                 |
+| maxUltiCharge       | number <sup>(readonly)</sup>                  | Максимальный процент зарядки супера.                                                                                                                 |
+| overchargeCharge    | number                                        | Текущий процент зарядки гиперзаряда.                                                                                                                 |
+| maxOverchargeCharge | number <sup>(readonly)</sup>                  | Максимальный процент зарядки супера.                                                                                                                 |
+| ultiUsesLeft        | number <sup>(readonly)</sup>                  | Сколько суперов осталось использовать из максимального количества.                                                                                                                 |
 | isRespawning        | boolean <sup>(readonly)</sup>                 | Равен <b>true</b>, если игрок возрождается и вот-вот заспавнится.                                                 |
-| emoteUsedIndex      | number <sup>(readonly)</sup>                  | …                                                                                                                 |
-| emoteUsedTick       | number <sup>(readonly)</sup>                  | …                                                                                                                 |
-| isOverchargeActive  | boolean <sup>(readonly)</sup>                 | …                                                                                                                 |
-| accessory           | [Accessory](#accessory) <sup>(readonly)</sup> | …                                                                                                                 |
+| emoteUsedIndex      | number <sup>(readonly)</sup>                  | Id использованного пина.                                                                                                                |
+| emoteUsedTick       | number <sup>(readonly)</sup>                  | Сколько тиков прошло ровно после отправки пина.                                                                                                                 |
+| isOverchargeActive  | boolean <sup>(readonly)</sup>                 | Актив ли гиперзаряд?                                                                                                                 |
+| accessory           | [Accessory](#accessory) <sup>(readonly)</sup> | Гаджет, может иметь свои параметры.                                                                                                                |
 
 ### Методы:
 
@@ -184,7 +184,7 @@ isAlive) обновляются только в конце игрового ци
 
 | Название        | Тип                                           | Предназначение                                                                                                                                            |
 |-----------------|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| data            | [SkillData](#skilldata) <sup>(readonly)</sup> | …                                                                                                                                                         |
+| data            | [SkillData](#skilldata) <sup>(readonly)</sup> | Настройки конкретного скилла и снаряда.                                                                                                                                                         |
 | activeTicksLeft | number <sup>(readonly)</sup>                  | Количество тиков, через которое скилл перейдет из активного в неактивное состояние. Монотонно убывает. Если скилл не в активном состоянии, то равен нулю. |
 | chargeValue     | number <sup>(readonly)</sup>                  | Текущие патроны. Актуально только для основной атаки. Одна единица равна 1/1000 патрона.                                                                  |
 
